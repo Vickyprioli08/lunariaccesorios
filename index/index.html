@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lunaria Accesorios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background-color: #f9f6f1;
+  color: #1a1a1a;
+  background-image: url("fondo gris.jpg");
+  background-repeat: repeat;
+  background-size: auto;
+}
+
+
+    header {
+      background-color: #ecc0e5;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #e0e0e0;
+       background-image: url("fondoluna.jpg");
+  background-repeat: repeat;
+  background-size: auto;
+    }
+
+    header h1 {
+      font-size: 3em;
+      color: #2a2a2a;
+      letter-spacing: 1px;
+    }
+
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    .producto {
+      width: 250px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      border: 1px solid #ddd;
+      transition: transform 0.3s;
+    }
+
+    .producto:hover {
+      transform: scale(1.03);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .info h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .info p {
+      color: #888;
+      font-size: 1em;
+    }
+
+    .contacto {
+      background-color: #eee;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .contacto h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    .promo-js {
+      background-color: #fafafa;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .promo-js h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .mensaje {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #fff;
+      border: 1px dashed #ccc;
+      display: inline-block;
+      max-width: 500px;
+    }
+
+    .promo-js button {
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .promo-js button:hover {
+      background-color: #444;
+    }
+
+    footer {
+      background-color: #ecabde;
+      color: rgb(39, 36, 36);
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+    }
+
+    .carrito {
+      position: fixed;
+      top: 230px;
+      right: 20px;
+      width: 300px;
+      background-color: #fff;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 20px;
+      font-family: 'Playfair Display', serif;
+      z-index: 999;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .carrito h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+      text-align: center;
+    }
+
+    .carrito ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .carrito li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #ccc;
+      padding: 8px 0;
+    }
+
+    .carrito .eliminar {
+      background-color: #ecc0e5;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 0.8em;
+    }
+
+    .carrito .eliminar:hover {
+      background-color: #d59fd6;
+      html {
+  scroll-behavior: smooth;
+}
+}
+
+nav {
+  background-color: #5e3256;
+  padding: 10px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #ff9fef;
+  border-bottom: 2px solid #8b357d;
+}/* Icono en el nav */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: #cca1c5;
+  padding: 10px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(150, 147, 147, 0.671);
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: color 0.3s, border-bottom 0.3s;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+nav a:hover {
+  color: #8b357d;
+  border-bottom: 2px solid #8b357d;
+}
+
+.nav-carrito {
+  margin-left: auto;
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.modal-carrito {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  z-index: 2000;
+}
+
+.modal-carrito h2 {
+  text-align: center;
+}
+
+.modal-carrito .cerrar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.modal-carrito ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.modal-carrito li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+.modal-carrito .eliminar {
+  background-color: #ecc0e5;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.8em;
+}
+
+.modal-carrito .eliminar:hover {
+  background-color: #d78cd8;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+
+}
+body {
+  margin: 0;
+  padding-bottom: 0 !important;
+  overflow-x: hidden;
+}
+
+footer {
+  margin-bottom: 0;
+}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Lunaria Accesorios</h1>
+  <p>Estilo, brillo y elegancia para cada momento</p>
+</header>
+<div class="overlay" id="overlay" onclick="cerrarCarrito()"></div>
+
+<div class="modal-carrito" id="modalCarrito">
+  <button class="cerrar" onclick="cerrarCarrito()">✖</button>
+  <h2>Carrito de compras</h2>
+  <ul id="itemsCarrito"></ul>
+  <p>Envío por Correo Argentino: $2500</p>
+  <p id="ahorroPromo" style="color: green; font-weight: bold; display: none;"></p>
+  <p><strong>Total con envío: $<span id="totalConEnvio">2500</span></strong></p>
+  <button onclick="pagar()" style="margin-top: 10px; width: 100%;">Pagar</button>
+</div>
+
+<nav>
+  <a href="#collares">Collares</a>
+  <a href="#anillos">Anillos</a>
+  <a href="#aros">Aros</a>
+  <a href="#pulseras">Pulseras</a>
+  <a href="#otros">Otros</a>
+  <div class="nav-carrito" onclick="abrirCarrito()">
+    🛒<span id="contadorCarrito" style="
+      background: #8b357d;
+      color: white;
+      font-size: 0.8em;
+      padding: 2px 6px;
+      border-radius: 50%;
+      margin-left: 4px;
+      vertical-align: middle;
+    ">0</span>
+  </div>
+  <div class="overlay" id="overlay" onclick="cerrarCarrito()"></div>
+
+<div class="modal-carrito" id="modalCarrito">
+  <button class="cerrar" onclick="cerrarCarrito()">✖</button>
+  <h2>Carrito de compras</h2>
+  <ul id="itemsCarrito"></ul>
+  <p>Envío por Correo Argentino: $2500</p>
+  <p id="ahorroPromo" style="color: green; font-weight: bold; display: none;"></p>
+  <p><strong>Total con envío: $<span id="totalConEnvio">2500</span></strong></p>
+  <button onclick="pagar()" style="margin-top: 10px; width: 100%;">Pagar</button>
+</div>
+</nav>
+
+<section id="aros">
+  <h2 style="text-align:center;">Aros</h2>
+  <section class="productos">
+    <div class="producto">
+      <img src="accesorio 1.jpg" alt="Aros dorados">
+      <div class="info">
+        <h3>Aros Dorados Trío</h3>
+        <p>$6.900</p>
+      </div>
+    </div>
+
+    <div class="producto">
+      <img src="accesorio 3.jpg" alt="Aros corazones de colores">
+      <div class="info">
+        <h3>Aros Corazones</h3>
+        <p>$5.800</p>
+      </div>
+    </div>
+
+    <div class="producto">
+      <img src="accesorio 4.jpg" alt="Aros perlas y dorado">
+      <div class="info">
+        <h3>Aros Perla Gold</h3>
+        <p>$7.500</p>
+      </div>
+    </div>
+  </section>
+</section>
+<section id="pulseras">
+  <h2 style="text-align:center;">Pulseras</h2>
+  <section class="productos">
+    <div class="producto">
+      <img src="accesorio 2.jpg" alt="Pulsera con dijes">
+      <div class="info">
+        <h3>Pulsera Ángel</h3>
+        <p>$9.000</p>
+      </div>
+    </div>
+  </section>
+</section>
+<section id="collares">
+  <h2 style="text-align:center;">Collares</h2>
+  <section class="productos">
+    <div class="producto">
+      <img src="accesorio 5.jpg" alt="Collar plateado doble aro">
+      <div class="info">
+        <h3>Collar Dúo Plateado</h3>
+        <p>$10.000</p>
+      </div>
+    </div>
+
+    <div class="producto">
+      <img src="accesorio 9.jpg" alt="Collar luna de amatista">
+      <div class="info">
+        <h3>Collar luna de amatista</h3>
+        <p>$14.000</p>
+      </div>
+    </div>
+
+    <div class="producto">
+      <img src="accesorio 10.jpg" alt="Collar dorado delicado">
+      <div class="info">
+        <h3>Collar dorado delicado</h3>
+        <p>$5.000</p>
+      </div>
+    </div>
+  </section>
+</section>
+<section id="anillos">
+  <h2 style="text-align:center;">Anillos</h2>
+  <section class="productos">
+    <div class="producto">
+      <img src="accesorio 7.jpg" alt="Anillo doble con piedritas">
+      <div class="info">
+        <h3>Anillo doble con piedritas</h3>
+        <p>$5.400</p>
+      </div>
+    </div>
+  </section>
+</section>
+<section id="otros">
+  <h2 style="text-align:center;">Otros</h2>
+  <section class="productos">
+    <div class="producto">
+      <img src="accesorio 6.jpg" alt="Trío dorado delicado">
+      <div class="info">
+        <h3>Trío dorado delicado</h3>
+        <p>$14.000</p>
+      </div>
+    </div>
+
+    <div class="producto">
+      <img src="accesorio 8.jpg" alt="Charm de cereza para cartera">
+      <div class="info">
+        <h3>Charm de cereza para cartera</h3>
+        <p>$7.000</p>
+      </div>
+    </div>
+  </section>
+</section>
+
+</section>
+
+<section class="contacto">
+  <h2 style="text-align: center;">Sugerencias</h2>
+  <section class="contacto">
+  <form>
+    <input type="text" placeholder="Tu nombre" required>
+    <input type="email" placeholder="Tu correo electrónico" required>
+    <textarea rows="4" placeholder="Tu mensaje..."></textarea>
+    <button type="submit">Enviar sugerencia</button>
+  </form>
+</section>
+
+<section class="promo-js">
+  <h2>¡Descubrí tu brillo!</h2>
+  <div class="mensaje" id="mensajePromo">
+    Hacé clic en el botón para recibir una sorpresa ✨
+  </div>
+  <button id="botonPromo" onclick="mostrarPromo()">Mostrar mensaje</button>
+</section>
+
+
+<footer>
+  © 2025 Lunaria Accesorios. Todos los derechos reservados.
+
+</footer>
+
+<script>
+  let descuentoActivo = false;
+  const carrito = [];
+
+  function mostrarPromo() {
+    const mensaje = document.getElementById("mensajePromo");
+    const boton = document.getElementById("botonPromo");
+
+    if (!descuentoActivo) {
+      descuentoActivo = true;
+      mensaje.innerHTML = "🎉 ¡Descuento aplicado! Tenés un 10% de descuento en tu compra.";
+      mensaje.style.backgroundColor = "#f2e8dc";
+      mensaje.style.border = "1px solid #d0c4b1";
+      boton.disabled = true;
+      boton.innerText = "Descuento aplicado";
+      actualizarCarrito();
+    }
+  }
+
+  function agregarAlCarrito(nombre, precio) {
+    carrito.push({ nombre, precio });
+    actualizarCarrito();
+  }
+
+  function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const lista = document.getElementById("itemsCarrito");
+    const totalSpan = document.getElementById("totalConEnvio");
+    const ahorroPromo = document.getElementById("ahorroPromo");
+document.getElementById("contadorCarrito").innerText = carrito.length;
+
+    lista.innerHTML = "";
+    let subtotal = 0;
+
+    carrito.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${item.nombre} - $${item.precio.toLocaleString()}
+        <button class="eliminar" onclick="eliminarDelCarrito(${index})">✖</button>
+      `;
+      lista.appendChild(li);
+      subtotal += item.precio;
+    });
+
+    const envio = carrito.length > 0 ? 2500 : 0;
+    let total = subtotal + envio;
+    let ahorro = 0;
+
+    if (descuentoActivo && subtotal > 0) {
+      ahorro = total * 0.1;
+      total = total * 0.9;
+      ahorroPromo.style.display = "block";
+      ahorroPromo.innerText = `💸 Ahorrás $${ahorro.toLocaleString(undefined, {minimumFractionDigits: 0})} con el 10% de descuento`;
+    } else {
+      ahorroPromo.style.display = "none";
+      ahorroPromo.innerText = "";
+    }
+
+    totalSpan.innerText = total.toLocaleString(undefined, {minimumFractionDigits: 0});
+  }
+
+ function pagar() {
+  if (carrito.length === 0) {
+    alert("Tu carrito está vacío.");
+    return;
+  }
+
+  const totalFinal = document.getElementById("totalConEnvio").innerText;
+  const productosTexto = carrito
+    .map((item, i) => `${i + 1}. ${item.nombre} - $${item.precio.toLocaleString()}`)
+    .join("%0A");
+
+  const mensaje = `Hola! Quiero realizar una compra en Lunaria Accesorios.%0A%0AProductos:%0A${productosTexto}%0A%0ATotal a pagar (con envío): $${totalFinal}`;
+
+  const telefono = "5491133901803"; // ← Cambiá por tu número real, con código de país y sin + (ej: Argentina: 54911...)
+  const url = `https://wa.me/${telefono}?text=${mensaje}`;
+
+  window.open(url, "_blank");
+
+  carrito.length = 0;
+  actualizarCarrito();
+}
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const productos = document.querySelectorAll(".producto");
+
+    productos.forEach((producto) => {
+      const info = producto.querySelector(".info");
+      const nombre = info.querySelector("h3").innerText;
+      const precioTexto = info.querySelector("p").innerText.replace(/\$|\./g, "").replace(",", ".");
+      const precio = parseFloat(precioTexto);
+
+      const boton = document.createElement("button");
+      boton.innerText = "Agregar al carrito 🛒";
+      boton.style.marginTop = "10px";
+      boton.onclick = () => agregarAlCarrito(nombre, precio);
+
+      info.appendChild(boton);
+    });
+  });
+  function abrirCarrito() {
+  document.getElementById("modalCarrito").style.display = "block";
+  document.getElementById("overlay").style.display = "block";
+}
+
+function cerrarCarrito() {
+  document.getElementById("modalCarrito").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
